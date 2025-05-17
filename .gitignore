@@ -1,1 +1,29 @@
-"__pycache__/\n*.pyc\n.env\n*.pth\n.DS_Store\n.ipynb_checkpoints\nmodels/\n" 
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environment
+rec/
+env/
+venv/
+*.env
+
+# IDE settings
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Jupyter stuff (if ever used)
+.ipynb_checkpoints/
+
+# PyTorch stuff (if saved later)
+*.pt
+*.pth
+
