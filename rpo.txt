@@ -1,0 +1,201 @@
+Let’s go, Marinaru. Instead of day-wise chunks, here’s a **modular, phase-wise roadmap**. This is how pros plan — focus on *goals and outcomes*, not just deadlines.
+
+---
+
+## 🧩 **PROJECT STRUCTURE: MOVIE/GAME RECOMMENDER SYSTEM (LEARNING-ORIENTED)**
+
+---
+
+### 🔧 **PHASE 0: Setup and Initialization**
+
+**Goals**: Create clean project skeleton + initialize Git + prepare for modular dev.
+
+#### Tasks:
+
+* Install:
+
+  * Python (ensure 3.9+)
+  * Git, GitHub Desktop (optional), VS Code
+  * `pip install pandas numpy matplotlib requests torch`
+* Create folders:
+
+  ```
+  project_root/
+  ├── data/            ← for datasets
+  ├── notebooks/       ← Jupyter experiments
+  ├── models/          ← saved PyTorch models
+  ├── src/             ← scripts (data, model, logic)
+  ├── utils/           ← helper functions
+  ├── main.py          ← CLI entry point
+  ├── README.md        ← project intro
+  └── requirements.txt ← pip freeze > requirements.txt
+  ```
+* Git init:
+
+  * `git init`, `.gitignore`, `git add .`, `git commit -m "Initial commit"`
+
+> ✅ *At this point, your repo is clean, versioned, and ready to evolve.*
+
+---
+
+### 📥 **PHASE 1: Data Gathering + Preprocessing**
+
+**Goals**: Gather raw data (movies/games) from APIs and format it.
+
+#### Tasks:
+
+* Choose sources:
+
+  * TMDB API (movies)
+  * RAWG API (games)
+* For each item, pull:
+
+  * Title, genres, actors (or developers), public rating, release date
+* Store it in `data/raw_data.csv`
+* Preprocess:
+
+  * Clean nulls
+  * Standardize genre and actor names
+  * Normalize ratings (0–1)
+
+> ✅ You now have a structured dataset of titles ready for encoding.
+
+---
+
+### 🧮 **PHASE 2: Feature Engineering**
+
+**Goals**: Convert raw attributes to numerical vectors for the model.
+
+#### Tasks:
+
+* **One-hot encode**:
+
+  * Genres
+  * Actors (pick top N actors to avoid sparse matrix)
+* Normalize numeric fields like public score
+* Create user input simulation:
+
+  * Let the user "select" genre, score threshold, and liked/disliked actors
+* Build a user preference vector
+
+> ✅ You have a clean feature matrix for both titles and simulated user input.
+
+---
+
+### 🧠 **PHASE 3: PyTorch Model Building**
+
+**Goals**: Learn PyTorch while building a working model.
+
+#### Tasks:
+
+* Define a simple `torch.nn.Module`:
+
+  * Input: concatenated title + user vectors
+  * Hidden: 2–3 layers
+  * Output: 1 neuron → sigmoid → approval probability
+* Use:
+
+  * `BCELoss` or `BCEWithLogitsLoss`
+  * `Adam` optimizer
+* Train with simulated feedback data (`X`, `y`)
+
+> ✅ You now have a model that can take a user profile + title and predict the match score.
+
+---
+
+### 🔁 **PHASE 4: Feedback Integration**
+
+**Goals**: Build the loop that trains the model with user feedback.
+
+#### Tasks:
+
+* Simulate feedback (approve/reject a recommendation)
+* Store every interaction as `(features, label)`
+* Train the model incrementally:
+
+  * Add new data to the training set
+  * Re-train or fine-tune the model
+* Optional:
+
+  * Track user "profile drift" — tastes changing over time
+
+> ✅ System now *learns and adapts* based on real usage.
+
+---
+
+### 🔍 **PHASE 5: Evaluation & Improvements**
+
+**Goals**: Understand how well your system performs and iterate.
+
+#### Tasks:
+
+* Track:
+
+  * Accuracy
+  * Precision/Recall (optional)
+  * Loss curve per epoch
+* Try:
+
+  * Changing hidden layers
+  * Adjusting learning rate
+  * Filtering based on genre alone to compare baseline
+
+> ✅ You now understand how to improve models through evaluation and experimentation.
+
+---
+
+### 💻 **PHASE 6: Final Output Interface**
+
+**Goals**: Make your project testable and presentable.
+
+#### Options:
+
+* CLI-based test (`main.py`):
+
+  * Ask for user prefs
+  * Recommend top 5 titles
+  * Let user type 'approve/reject'
+* Or simple **Streamlit** UI (1-page web app)
+* Save:
+
+  * Model in `/models/`
+  * Logs of interactions
+  * Update `README.md` with example usage
+
+> ✅ Now it’s a real product demo — perfect for your GitHub profile.
+
+---
+
+### 🌐 **PHASE 7: GitHub Finalization**
+
+**Goals**: Polish and share the project properly.
+
+#### Tasks:
+
+* Push regularly to GitHub using:
+
+  * `git status`, `git add .`, `git commit -m "..."`, `git push`
+* Create:
+
+  * `README.md` with badges, usage, screenshots
+  * `requirements.txt`
+* Optional:
+
+  * Add `LICENSE`
+  * Tag release versions (`git tag v1.0`)
+
+---
+
+## 🧠 Skills You'll Learn:
+
+* Python API wrangling
+* Data preprocessing
+* Feature encoding
+* PyTorch architecture design
+* Feedback loop learning
+* Git & GitHub workflows
+* CLI/Streamlit app building
+
+---
+
+Whenever you say the word, we can start **PHASE 0**, and I’ll walk you through every single line with clear explanations, hands-on code, and logic breakdowns. Ready when you are, Marinaru ⚔️
